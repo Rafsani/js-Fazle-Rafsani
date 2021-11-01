@@ -5,6 +5,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const { Sequelize } = require('sequelize');
 const userutil = require('./models/user');
+const productutil = require('./models/product');
 
 const app = express();
 
@@ -50,7 +51,26 @@ app.post("/createUser",(req,res) =>
 
 app.post("/authenticate", (req,res) => {
     if(userutil.validateUser(req.body.username, req.body.password) === false )
-    res.send("Unauthorized"); 
+   {
+    res.send("unauthorized");
+   }  
+   else
+   {
+       res.send("authorized");
+   }
+});
+
+app.post("/addProduct", (req,res) => {
+    console.log(req.body);
+    productutil.addProduct(req.body.name, req.body.type, req.body.description);
+    res.status(200).send("done");
+});
+
+app.get("/allproducts", async (req,res) => {
+    
+    const   products = await productutil.getAllProd();
+    console.log(products);
+    res.send(products);
 });
 
 app.listen(port, () => console.log(`server running at port ${port}`));
