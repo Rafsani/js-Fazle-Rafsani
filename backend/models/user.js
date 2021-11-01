@@ -20,7 +20,6 @@ const User = sequelize.define("user", {
 async function addUser(name,pass,type) 
 {
     const newuser = await User.create({ username: name, password: pass, type: type });
-// console.log(jane); // Don't do this
     console.log(newuser.toJSON());
     newuser.save();
 }

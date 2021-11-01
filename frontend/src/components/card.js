@@ -8,7 +8,8 @@ import Typography from '@mui/material/Typography';
 
 export default function MediaCard(props) {
   return (
-    <Card sx={{ maxWidth: 345 , alignItems: 'center'}}>
+  <div style={{padding: '2%'}}>
+    <Card sx={{ maxWidth: 345 , alignItems: 'center', padding: '1%'}}>
       <CardMedia
         component="img"
         alt="green iguana"
@@ -31,5 +32,6 @@ export default function MediaCard(props) {
         
       </CardActions>
     </Card>
+    </div>
   );
 }
